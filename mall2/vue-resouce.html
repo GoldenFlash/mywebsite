@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="app">
+		<span v-on:click ="get">q</span>
+	</div>
+<script type="text/javascript" src="node_modules/vue/dist/vue.min.js"></script>
+<script type="text/javascript" src="node_modules/vue-resource/dist/vue-resource.min.js"></script>
+<script type="text/javascript">
+		new Vue({
+			el:"#app",
+			data:{
+				message:''
+			},
+			http:{
+				root:"url"
+			},
+			methods:{
+				get:function(){
+					this.$http.post("package.json",{
+						params:{
+							userId:111
+						},
+						headers:{
+							token:"abcd"
+						}
+					}).then(function(req,res){
+						this.message = res.data;
+					});
+				},
+				post(){
+					this.$http.post("package.json",{
+						userId:222
+					},
+					{
+						headers:{
+							token:'abc'
+						}
+					}).then(res=>{
+						this.message=res.data;
+					});
+				},
+				jsonp(){
+					this.$http.jsonp("url").then(res=>{
+						this.message=res.data;
+					});
+				},
+				http(){
+					this.$http({
+						url:"package.json",
+						method:'get',
+						params:{
+							userId:"103"
+						},
+						headers:{
+							token:123
+						},
+						timeout:'',
+
+					}).then(res=>{
+						this.message=res.data;
+					});
+				}
+			},
+		});
+	</script>
+</body>
+</html>
