@@ -9,5 +9,5 @@
 ## 数据库:
   + 使用的是mongodb
   ## 涉及技术：
-    +使用 vuejs、node、express、mongodb
+    + 使用 vuejs、node、express、mongodb
 整个前端部分使用webpack打包减少代码体积、网页请求、使页面加载更快
